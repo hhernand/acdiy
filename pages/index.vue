@@ -26,12 +26,14 @@ export default {
   data() {
     return {
       craftable: [],
+      allItems: {},
       selected: [],
       goals: []
     }
   },
   async created() {
     this.craftable = await this.$axios.$get('/.netlify/functions/craftable')
+    this.allItems = await this.$axios.$get('/.netlify/functions/all-items')
   },
   methods: {
     addToGoals() {
