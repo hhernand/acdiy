@@ -4,7 +4,19 @@
       <h2 class="subtitle">
         AC DIY tracker
       </h2>
-      <v-select label="name" :options="craftable"></v-select>
+      <v-select
+        v-model="selected"
+        multiple
+        label="name"
+        :options="craftable"
+      ></v-select>
+      <button @click="addToGoals">Add to Goals</button>
+      <h3>Goals</h3>
+      <ul>
+        <li v-for="item of goals" :key="item.name">
+          {{ item.name }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -13,11 +25,19 @@
 export default {
   data() {
     return {
-      craftable: []
+      craftable: [],
+      selected: [],
+      goals: []
     }
   },
   async created() {
     this.craftable = await this.$axios.$get('/.netlify/functions/craftable')
+  },
+  methods: {
+    addToGoals() {
+      this.goals.push(...this.selected)
+      this.selected = []
+    }
   }
 }
 </script>
