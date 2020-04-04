@@ -1,16 +1,22 @@
 <template>
   <div class="container">
-    <div>
+    <div class="inside">
       <h2 class="subtitle">
         AC DIY tracker
       </h2>
-      <v-select
-        v-model="selected"
-        multiple
-        label="name"
-        :options="craftable"
-      ></v-select>
-      <button @click="addToGoals">Add to Goals</button>
+      <grid>
+        <grid-item size="3/4">
+          <v-select
+            v-model="selected"
+            multiple
+            label="name"
+            :options="craftable"
+          ></v-select>
+        </grid-item>
+        <grid-item size="1/4">
+          <button @click="addToGoals">Add to Goals</button>
+        </grid-item>
+      </grid>
 
       <grid>
         <grid-item size="1/2">
@@ -69,12 +75,18 @@ export default {
 
 <style>
 .container {
+  width: 70%;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.inside {
+  width: 100%;
+  min-height: 70%;
 }
 
 .title {
