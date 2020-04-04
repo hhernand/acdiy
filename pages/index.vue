@@ -17,6 +17,12 @@
           {{ item.name }}
         </li>
       </ul>
+      <h3>Materials</h3>
+      <ul>
+        <li v-for="entry of Object.entries(materials)" :key="entry[0]">
+          {{ allItems[entry[0]].name }} - {{ entry[1] }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -28,7 +34,8 @@ export default {
       craftable: [],
       allItems: {},
       selected: [],
-      goals: []
+      goals: [],
+      materials: {}
     }
   },
   async created() {
@@ -38,6 +45,15 @@ export default {
   methods: {
     addToGoals() {
       this.goals.push(...this.selected)
+      this.selected.forEach((s) => {
+        Object.entries(s.materials).forEach((entry) => {
+          const id = entry[0]
+          const quantity = entry[1]
+          this.materials[id] = this.materials[id]
+            ? this.materials[id] + quantity
+            : quantity
+        })
+      })
       this.selected = []
     }
   }
