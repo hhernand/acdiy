@@ -11,18 +11,25 @@
         :options="craftable"
       ></v-select>
       <button @click="addToGoals">Add to Goals</button>
-      <h3>Goals</h3>
-      <ul>
-        <li v-for="item of goals" :key="item.name">
-          {{ item.name }}
-        </li>
-      </ul>
-      <h3>Materials</h3>
-      <ul>
-        <li v-for="entry of Object.entries(materials)" :key="entry[0]">
-          {{ allItems[entry[0]].name }} - {{ entry[1] }}
-        </li>
-      </ul>
+
+      <grid>
+        <grid-item size="1/2">
+          <h3>Goals</h3>
+          <ul>
+            <li v-for="item of goals" :key="item.name">
+              {{ item.name }}
+            </li>
+          </ul>
+        </grid-item>
+        <grid-item size="1/2">
+          <h3>Materials</h3>
+          <ul>
+            <li v-for="entry of Object.entries(materials)" :key="entry[0]">
+              {{ allItems[entry[0]].name }} - {{ entry[1] }}
+            </li>
+          </ul>
+        </grid-item>
+      </grid>
     </div>
   </div>
 </template>

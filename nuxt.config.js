@@ -27,7 +27,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/vue-select'],
+  plugins: [
+    '~/plugins/vue-select',
+    { src: '~/plugins/fractions-grid', mode: 'client' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
