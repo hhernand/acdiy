@@ -15,12 +15,14 @@ exports.handler = (event, context, callback) => {
       return client.query(toQuery).then((ret) => {
         const result = {}
         ret.forEach((r, i) => {
-          result[
-            r.ref
-              .toString()
-              .split(', "')[1]
-              .split('"')[0]
-          ] = r.data
+          const ref = r.ref
+            .toString()
+            .split(', "')[1]
+            .split('"')[0]
+          result[ref] = {
+            ref,
+            ...r.data
+          }
         })
         return callback(null, {
           statusCode: 200,
