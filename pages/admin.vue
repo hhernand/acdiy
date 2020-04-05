@@ -28,6 +28,13 @@
 
 <script>
 export default {
+  beforeRouteEnter(to, from, next) {
+    if (to.query.key !== process.env.ADMIN_KEY) {
+      next('/')
+    } else {
+      next()
+    }
+  },
   data() {
     return {
       allItems: {},
