@@ -1,42 +1,40 @@
 <template>
-  <div class="container">
-    <div class="inside">
-      <h2 class="subtitle">
-        AC DIY tracker
-      </h2>
-      <grid>
-        <grid-item size="3/4">
-          <v-select
-            v-model="selected"
-            multiple
-            label="name"
-            :options="craftable"
-          ></v-select>
-        </grid-item>
-        <grid-item size="1/4">
-          <button @click="addToGoals">Add to Goals</button>
-        </grid-item>
-      </grid>
+  <div>
+    <h2 class="subtitle">
+      AC DIY tracker
+    </h2>
+    <grid>
+      <grid-item size="3/4">
+        <v-select
+          v-model="selected"
+          multiple
+          label="name"
+          :options="craftable"
+        ></v-select>
+      </grid-item>
+      <grid-item size="1/4">
+        <button @click="addToGoals">Add to Goals</button>
+      </grid-item>
+    </grid>
 
-      <grid>
-        <grid-item size="1/2">
-          <h3>Goals</h3>
-          <ul>
-            <li v-for="item of goals" :key="item.name">
-              {{ item.name }}
-            </li>
-          </ul>
-        </grid-item>
-        <grid-item size="1/2">
-          <h3>Materials</h3>
-          <ul>
-            <li v-for="entry of Object.entries(materials)" :key="entry[0]">
-              {{ allItems[entry[0]].name }} - {{ entry[1] }}
-            </li>
-          </ul>
-        </grid-item>
-      </grid>
-    </div>
+    <grid>
+      <grid-item size="1/2">
+        <h3>Goals</h3>
+        <ul>
+          <li v-for="item of goals" :key="item.name">
+            {{ item.name }}
+          </li>
+        </ul>
+      </grid-item>
+      <grid-item size="1/2">
+        <h3>Materials</h3>
+        <ul>
+          <li v-for="entry of Object.entries(materials)" :key="entry[0]">
+            {{ allItems[entry[0]].name }} - {{ entry[1] }}
+          </li>
+        </ul>
+      </grid-item>
+    </grid>
   </div>
 </template>
 
@@ -74,21 +72,6 @@ export default {
 </script>
 
 <style>
-.container {
-  width: 70%;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.inside {
-  width: 100%;
-  min-height: 70%;
-}
-
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

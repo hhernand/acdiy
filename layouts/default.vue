@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="container">
+    <div class="inside">
+      <nuxt />
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,21 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.inside {
+  width: 100%;
+  min-height: 70%;
 }
 
 .button--green {
