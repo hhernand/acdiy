@@ -1,3 +1,4 @@
+require('dotenv').config()
 export default {
   mode: 'universal',
   /*
@@ -31,12 +32,17 @@ export default {
     '~/plugins/vue-select',
     { src: '~/plugins/fractions-grid', mode: 'client' }
   ],
+
+  env: {
+    ADMIN_KEY: process.env.ADMIN_KEY
+  },
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Nuxt.js modules
