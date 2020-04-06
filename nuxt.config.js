@@ -30,7 +30,7 @@ export default {
    */
   plugins: [
     '~/plugins/vue-select',
-    { src: '~/plugins/fractions-grid', mode: 'client' }
+    { src: '~/plugins/client-plugins', mode: 'client' }
   ],
 
   env: {

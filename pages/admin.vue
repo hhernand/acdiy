@@ -1,5 +1,6 @@
 <template>
   <div>
+    <notifications position="top center" />
     <h2 class="subtitle">
       Add New Item
     </h2>
@@ -56,10 +57,30 @@ export default {
         quantity: 0
       })
     },
-    createItem() {
+    async createItem() {
       this.materials.forEach((mat) => {
         this.data.materials[mat.item.ref] = parseInt(mat.quantity, 10)
       })
+
+      const response = await this.$axios.$post(
+        '/.netlify/functions/create-item',
+        this.data
+      )
+
+      if (response.data.name === this.data.name) {
+        this.$notify({
+          text: `${this.data.name} created!`
+        })
+      }
+      this.clearData()
+    },
+    clearData() {
+      this.data = {
+        name: '',
+        type: '',
+        materials: {}
+      }
+      this.materials = []
     }
   }
 }
