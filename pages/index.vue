@@ -23,7 +23,15 @@
           <h3>Goals</h3>
           <ul>
             <li v-for="item of goals" :key="item.name">
-              {{ item.name }}
+              <div class="goal">
+                <img
+                  v-if="icons.includes(item.type.toLowerCase())"
+                  class="icon"
+                  :src="
+                    require(`@/assets/images/${item.type.toLowerCase()}.png`)
+                  "
+                /><span>{{ item.name }}</span>
+              </div>
             </li>
           </ul>
         </grid-item>
@@ -47,6 +55,16 @@
 export default {
   data() {
     return {
+      icons: [
+        'tools',
+        'equipment',
+        'housewares',
+        'misc',
+        'other',
+        'seasonal',
+        'wall-mounted',
+        'wall-floor-rug'
+      ],
       craftable: [],
       allItems: {},
       selected: [],
@@ -106,6 +124,16 @@ export default {
   background: #e5dec1;
   color: #86521d;
   padding: 0.8em;
+}
+
+.goal {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 1.2rem;
+  margin-right: 0.4rem;
 }
 
 .item {
