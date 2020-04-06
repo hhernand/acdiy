@@ -3,8 +3,8 @@
     <h2 class="subtitle">
       AC DIY tracker
     </h2>
-    <grid>
-      <grid-item size="3/4">
+    <grid wrap="wrap">
+      <grid-item size="3/4" :rwd="{ compact: '1/1' }">
         <v-select
           v-model="selected"
           multiple
@@ -12,7 +12,7 @@
           :options="craftable"
         ></v-select>
       </grid-item>
-      <grid-item size="1/4">
+      <grid-item size="1/4" :rwd="{ compact: '1/1' }">
         <button @click="addToGoals">Add to Goals</button>
       </grid-item>
     </grid>
@@ -112,6 +112,18 @@ export default {
   padding: 0.4em;
   display: flex;
   justify-content: space-between;
+}
+
+li:first-child .item {
+  border-radius: 0.8em 0.8em 0 0;
+}
+
+li:last-child .item {
+  border-radius: 0 0 0.8em 0.8em;
+}
+
+li:only-child .item {
+  border-radius: 0.8em;
 }
 
 .row-light {

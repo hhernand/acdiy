@@ -63,6 +63,13 @@ button {
   transition: 0.3s;
 }
 
+@media only screen and (max-width: 600px) {
+  button {
+    width: 100%;
+    margin-top: 0.8rem;
+  }
+}
+
 button:hover {
   cursor: pointer;
   transition: 0.3s;
