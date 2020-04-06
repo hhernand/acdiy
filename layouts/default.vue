@@ -1,9 +1,7 @@
 <template>
-  <div class="container">
-    <div class="inside">
-      <nuxt />
-    </div>
-  </div>
+  <container>
+    <nuxt />
+  </container>
 </template>
 
 <style>
@@ -19,6 +17,24 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background-image: url('/wood_bg.png');
+}
+
+.vfg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+ul {
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
 *,
 *:before,
 *:after {
@@ -26,28 +42,32 @@ html {
   margin: 0;
 }
 
-.container {
-  width: 70%;
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.v-select {
+  background: #e5dec1;
+  border-radius: 5px;
 }
 
-.inside {
-  width: 100%;
-  min-height: 70%;
+.vs__selected {
+  background-color: #ded5ac !important;
+  color: #86521d !important;
 }
 
-.button--green {
+button {
   display: inline-block;
   border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
+  border: 1px solid #86521d;
+  color: #86521d;
+  background: #e5dec1;
   text-decoration: none;
   padding: 10px 30px;
+  transition: 0.3s;
+}
+
+button:hover {
+  cursor: pointer;
+  transition: 0.3s;
+  background: #86521d;
+  color: #e5dec1;
 }
 
 .button--green:hover {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="subtitle">
       AC DIY tracker
     </h2>
@@ -17,24 +17,29 @@
       </grid-item>
     </grid>
 
-    <grid>
-      <grid-item size="1/2">
-        <h3>Goals</h3>
-        <ul>
-          <li v-for="item of goals" :key="item.name">
-            {{ item.name }}
-          </li>
-        </ul>
-      </grid-item>
-      <grid-item size="1/2">
-        <h3>Materials</h3>
-        <ul>
-          <li v-for="entry of Object.entries(materials)" :key="entry[0]">
-            {{ allItems[entry[0]].name }} - {{ entry[1] }}
-          </li>
-        </ul>
-      </grid-item>
-    </grid>
+    <div class="box">
+      <grid>
+        <grid-item size="1/2">
+          <h3>Goals</h3>
+          <ul>
+            <li v-for="item of goals" :key="item.name">
+              {{ item.name }}
+            </li>
+          </ul>
+        </grid-item>
+        <grid-item size="1/2">
+          <h3>Materials</h3>
+          <ul>
+            <li v-for="(entry, i) of Object.entries(materials)" :key="entry[0]">
+              <div class="item" :class="i % 2 ? 'row-light' : 'row-dark'">
+                <span>{{ allItems[entry[0]].name }}</span
+                ><span>{{ entry[1] }}</span>
+              </div>
+            </li>
+          </ul>
+        </grid-item>
+      </grid>
+    </div>
   </div>
 </template>
 
@@ -88,6 +93,33 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+}
+
+.container {
+  width: 100%;
+}
+
+.box {
+  margin-top: 0.8rem;
+  border-radius: 25px;
+  border: 10px solid #eee5c8;
+  background: #e5dec1;
+  color: #86521d;
+  padding: 0.8em;
+}
+
+.item {
+  padding: 0.4em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.row-light {
+  background: #e1d9b5;
+}
+
+.row-dark {
+  background: #ded5ac;
 }
 
 .links {
