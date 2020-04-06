@@ -5,7 +5,7 @@
       Add New Item
     </h2>
     <p><input v-model="data.name" placeholder="Name" /></p>
-    <p><input v-model="data.type" placeholder="Type" /></p>
+    <v-select v-model="data.type" placeholder="Type" :options="types" />
     <p>Materials: <button @click="addMaterial">Add Material</button></p>
     <ul>
       <li v-for="(item, i) of materials" :key="i">
@@ -38,6 +38,16 @@ export default {
   },
   data() {
     return {
+      types: [
+        'Tools',
+        'Equipment',
+        'Housewares',
+        'Misc',
+        'Other',
+        'Seasonal',
+        'Wall-Mounted',
+        'Wall-Floor-Rug'
+      ],
       allItems: {},
       materials: [],
       data: {
