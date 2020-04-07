@@ -8,7 +8,11 @@ exports.handler = (event, context, callback) => {
   return client
     .query(
       q.Paginate(
-        q.Join(q.Match(q.Index('all_items')), q.Index('items_sort_by_name_asc'))
+        q.Join(
+          q.Match(q.Index('all_items')),
+          q.Index('items_sort_by_name_asc')
+        ),
+        { size: 5000 }
       )
     )
     .then((response) => {

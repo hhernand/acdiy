@@ -15,7 +15,8 @@ exports.handler = (event, context, callback) => {
             q.Match(q.Index('items_search_by_type'), 'Base')
           ),
           q.Index('items_sort_by_name_asc')
-        )
+        ),
+        { size: 5000 }
       )
     )
     .then((response) => {
