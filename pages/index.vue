@@ -23,8 +23,13 @@
             <li v-for="(item, i) of goals" :key="i">
               <div class="goal">
                 <img
-                  v-if="icons.includes(item.type.toLowerCase())"
+                  v-if="item.seasonal === true"
                   class="icon"
+                  :src="require(`@/assets/images/seasonal.png`)"
+                />
+                <img
+                  v-if="icons.includes(item.type.toLowerCase())"
+                  class="icon mr-xs"
                   :src="
                     require(`@/assets/images/${item.type.toLowerCase()}.png`)
                   "
@@ -120,6 +125,10 @@ export default {
 
 .icon {
   width: 1.2rem;
+  margin-right: 0.2rem;
+}
+
+.mr-xs {
   margin-right: 0.4rem;
 }
 
