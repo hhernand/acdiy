@@ -43,7 +43,7 @@
           <ul>
             <li v-for="(entry, i) of Object.entries(materials)" :key="i">
               <div class="item" :class="i % 2 ? 'row-light' : 'row-dark'">
-                <span>{{ allItems[entry[0]].name }}</span
+                <span>{{ allItemsIndexed[entry[0]].name }}</span
                 ><span>{{ entry[1] }}</span>
               </div>
             </li>
@@ -69,7 +69,7 @@ export default {
         'wall-floor-rug'
       ],
       craftable: [],
-      allItems: {},
+      allItemsIndexed: {},
       selected: [],
       goals: [],
       materials: {}
@@ -77,7 +77,8 @@ export default {
   },
   async created() {
     this.craftable = await this.$axios.$get('/.netlify/functions/craftable')
-    this.allItems = await this.$axios.$get('/.netlify/functions/all-items')
+    const result = await this.$axios.$get('/.netlify/functions/all-items')
+    this.allItemsIndexed = result.indexed
   },
   methods: {
     addToGoals() {

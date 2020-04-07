@@ -9,16 +9,19 @@ exports.handler = (event, context, callback) => {
   return client
     .query(
       q.Paginate(
-        q.Difference(
-          q.Match(q.Index('all_items')),
-          q.Match(q.Index('items_search_by_type'), 'Base')
+        q.Join(
+          q.Difference(
+            q.Match(q.Index('all_items')),
+            q.Match(q.Index('items_search_by_type'), 'Base')
+          ),
+          q.Index('items_sort_by_name_asc')
         )
       )
     )
     .then((response) => {
       const refs = response.data
       const toQuery = refs.map((ref) => {
-        return q.Get(ref)
+        return q.Get(ref[1])
       })
       return client.query(toQuery).then((ret) => {
         return callback(null, {

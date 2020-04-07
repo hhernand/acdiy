@@ -14,7 +14,7 @@
             <v-select
               v-model="item.item"
               label="name"
-              :options="Object.values(allItems)"
+              :options="allItemsOrdered"
             />
           </grid-item>
           <grid-item size="1/4">
@@ -48,7 +48,7 @@ export default {
         'Wall-Mounted',
         'Wall-Floor-Rug'
       ],
-      allItems: {},
+      allItemsOrdered: [],
       materials: [],
       data: {
         name: '',
@@ -58,7 +58,8 @@ export default {
     }
   },
   async created() {
-    this.allItems = await this.$axios.$get('/.netlify/functions/all-items')
+    const result = await this.$axios.$get('/.netlify/functions/all-items')
+    this.allItemsOrdered = result.ordered
   },
   methods: {
     addMaterial() {
