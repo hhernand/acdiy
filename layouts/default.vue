@@ -24,7 +24,7 @@ body {
 .vfg-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 2rem;
   min-height: 100vh;
   text-align: center;
 }
@@ -52,20 +52,20 @@ ul {
   color: #86521d !important;
 }
 
-button {
+.button {
+  width: 100%;
   display: inline-block;
   border-radius: 4px;
   border: 1px solid #86521d;
   color: #86521d;
   background: #e5dec1;
   text-decoration: none;
-  padding: 10px 30px;
+  padding: 0.5rem 30px;
   transition: 0.3s;
 }
 
 @media only screen and (max-width: 600px) {
   button {
-    width: 100%;
     margin-top: 0.8rem;
   }
 }

@@ -1,9 +1,7 @@
 <template>
   <div class="container">
-    <h2 class="subtitle">
-      AC DIY tracker
-    </h2>
-    <grid wrap="wrap">
+    <img class="banner" :src="require('@/assets/images/banner.png')" />
+    <grid class="padding" wrap="wrap" horizontal="between">
       <grid-item size="3/4" :rwd="{ compact: '1/1' }">
         <v-select
           v-model="selected"
@@ -13,7 +11,7 @@
         ></v-select>
       </grid-item>
       <grid-item size="1/4" :rwd="{ compact: '1/1' }">
-        <button @click="addToGoals">Add to Goals</button>
+        <button class="button" @click="addToGoals">Add to Goals</button>
       </grid-item>
     </grid>
 
@@ -22,7 +20,7 @@
         <grid-item size="1/2">
           <h3>Goals</h3>
           <ul>
-            <li v-for="item of goals" :key="item.name">
+            <li v-for="(item, i) of goals" :key="i">
               <div class="goal">
                 <img
                   v-if="icons.includes(item.type.toLowerCase())"
@@ -38,7 +36,7 @@
         <grid-item size="1/2">
           <h3>Materials</h3>
           <ul>
-            <li v-for="(entry, i) of Object.entries(materials)" :key="entry[0]">
+            <li v-for="(entry, i) of Object.entries(materials)" :key="i">
               <div class="item" :class="i % 2 ? 'row-light' : 'row-dark'">
                 <span>{{ allItems[entry[0]].name }}</span
                 ><span>{{ entry[1] }}</span>
@@ -95,22 +93,12 @@ export default {
 </script>
 
 <style>
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.banner {
+  width: 100%;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.padding.vfg-grid {
+  padding: 0.8rem 0;
 }
 
 .container {
@@ -118,7 +106,6 @@ export default {
 }
 
 .box {
-  margin-top: 0.8rem;
   border-radius: 25px;
   border: 10px solid #eee5c8;
   background: #e5dec1;
