@@ -5,8 +5,23 @@
       Add New Item
     </h2>
     <p><input v-model="data.name" placeholder="Name" /></p>
-    <v-select v-model="data.type" placeholder="Type" :options="types" />
-    <p>Materials: <button @click="addMaterial">Add Material</button></p>
+    <p><v-select v-model="data.type" placeholder="Type" :options="types" /></p>
+    <p>
+      <label
+        ><input v-model="data.seasonal" class="checkbox" type="checkbox" />
+        Seasonal?</label
+      >
+    </p>
+    <p>
+      <grid horizontal="between">
+        <grid-item>
+          Materials:
+        </grid-item>
+        <grid-item>
+          <button class="button" @click="addMaterial">Add Material</button>
+        </grid-item>
+      </grid>
+    </p>
     <ul>
       <li v-for="(item, i) of materials" :key="i">
         <grid>
@@ -18,12 +33,12 @@
             />
           </grid-item>
           <grid-item size="1/4">
-            <input v-model="item.quantity" type="number" />
+            <input v-model="item.quantity" type="number" min="1" />
           </grid-item>
         </grid>
       </li>
     </ul>
-    <button @click="createItem">Submit Item</button>
+    <button class="button" @click="createItem">Submit Item</button>
   </div>
 </template>
 
@@ -53,6 +68,7 @@ export default {
       data: {
         name: '',
         type: '',
+        seasonal: false,
         materials: {}
       }
     }
@@ -65,7 +81,7 @@ export default {
     addMaterial() {
       this.materials.push({
         item: '',
-        quantity: 0
+        quantity: 1
       })
     },
     async createItem() {
@@ -104,5 +120,25 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+}
+
+p {
+  padding: 0.4rem;
+}
+
+li {
+  margin: 0.4rem 0;
+}
+
+input {
+  width: 100%;
+  background: #e5dec1;
+  border: 1px solid #bab59f;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.checkbox {
+  width: auto;
 }
 </style>
