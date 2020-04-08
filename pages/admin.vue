@@ -105,6 +105,7 @@ export default {
       this.data = {
         name: '',
         type: '',
+        seasonal: false,
         materials: {}
       }
       this.materials = []
